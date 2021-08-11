@@ -36,7 +36,7 @@ def resize_with_aspect(image: np.ndarray, width: Optional[int] = None, height: O
     # original image
     if width is None and height is None and scale is None:
         return image
-    if width is not None and height is not NOne and scale is not None:
+    if width is not None and height is not None and scale is not None:
         warnings.warn("リサイズはwidth,heightが優先されます、scale指定したい場合はwidth,heightはNoneにしてください")
 
     # 画像サイズを事前に決定し、サイズに収まるように指定した画像をリサイズする
