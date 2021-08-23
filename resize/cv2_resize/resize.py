@@ -42,20 +42,20 @@ def resize_with_aspect(image: np.ndarray, width: Optional[int] = None, height: O
     # 画像サイズを事前に決定し、サイズに収まるように指定した画像をリサイズする
     if width and height:
         canvas = np.full((height, width, len(bg_color)), list(reversed(bg_color)), dtype=np.uint8)
-        print("canvas", width, height)
-        print("original", w, h)
+        # print("canvas", width, height)
+        # print("original", w, h)
         # キャンバスとの比が小さい方に合わせる
         c_w, c_h = width, height
         i_w, i_h = w, h
         a_w, a_h = c_w / i_w, c_h / i_h
-        print("scale", a_w, a_h)
+        # print("scale", a_w, a_h)
         if a_w < a_h:
             r_i_x, r_i_y = int(i_w * a_w), int(i_h * a_w)  # resize image size
         else:
             r_i_x, r_i_y = int(i_w * a_h), int(i_h * a_h)  # resize image size
         pad_x, pad_y = (c_w - r_i_x) // 2, (c_h - r_i_y) // 2
-        print("resize", r_i_x, r_i_y)
-        print("pad", pad_x, pad_y)
+        # print("resize", r_i_x, r_i_y)
+        # print("pad", pad_x, pad_y)
         resized_img = cv2.resize(image, (r_i_x, r_i_y), interpolation=inter)
         canvas[pad_y:pad_y + r_i_y, pad_x:pad_x + r_i_x, :] = resized_img
         return canvas
