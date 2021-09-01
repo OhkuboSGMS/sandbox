@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "config_yaml"
+version = "0.0.1"
+description = "Abseil Update with Yaml"
+authors = ["OhkuboSGMS <ginger.os777146th@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+absl-py = "^0.13.0"
+PyYAML = "^5.4.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
