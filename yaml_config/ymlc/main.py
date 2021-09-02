@@ -1,5 +1,5 @@
 import os
-import warnings
+from pathlib import Path
 
 import yaml
 from addict import Dict
@@ -18,7 +18,7 @@ def update_config(config: Dict, config_file_path: str):
         raise FileNotFoundError(config_file_path)
 
     with open(config_file_path, "r") as f:
-        yaml_config = yaml.load(f, Loader=yaml.FullLoader)
+        yaml_config = yaml.load(f, Loader=yaml.SafeLoader)  # yamlのフォーマットが間違っている場合エラーを表示
         yaml_keys = all_keys(yaml_config)
         config_keys = all_keys(config)
         is_invalid_args = not (set(yaml_keys) <= set(config_keys))
@@ -29,3 +29,7 @@ def update_config(config: Dict, config_file_path: str):
         config.update(yaml_config)
     return config
 
+
+def write_config(config: Dict, config_file_path: str):
+    with open(Path(config_file_path).with_suffix(".yaml"), "w") as f:
+        yaml.dump(config.to_dict(), f)
