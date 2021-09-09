@@ -4,7 +4,10 @@ version = "0.0.2"
 description = "Update Config with Yaml"
 authors = ["OhkuboSGMS <ginger.os777146th@gmail.com>"]
 license = "MIT"
-
+packages = [
+    { include = "ymlc" },
+    { include = "ymlc/**/*.py" },
+]
 [tool.poetry.dependencies]
 python = "^3.8"
 absl-py = "^0.13.0"
