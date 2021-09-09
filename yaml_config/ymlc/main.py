@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 
+import dictdiffer
 import yaml
 from addict import Dict
 
@@ -14,6 +15,7 @@ def all_keys(a):
 
 
 def update_config(config: Dict, config_file_path: str):
+    after = config.deepcopy()
     if not os.path.exists(config_file_path):
         raise FileNotFoundError(config_file_path)
 
@@ -26,8 +28,12 @@ def update_config(config: Dict, config_file_path: str):
         invalid_args = set(yaml_keys) - (set(yaml_keys) & set(config_keys))
         if is_invalid_args:
             raise ValueError(f"Invalid args {invalid_args} in {yaml_keys}.")
-        config.update(yaml_config)
-    return config
+        after.update(yaml_config)
+    return after
+
+
+def diff(before: Dict, after: Dict):
+    return dictdiffer.diff(before, after)
 
 
 def write_config(config: Dict, config_file_path: str):
