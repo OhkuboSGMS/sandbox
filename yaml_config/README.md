@@ -10,7 +10,7 @@ yamlファイルの変更によって設定を反映させる
 
 ### Install
 
-`pip install git+https://github.com/OhkuboSGMS/sandbox.git@module/yaml_config#subdirectory=yaml_config`
+`pip install git+https://github.com/OhkuboSGMS/sandbox.git#subdirectory=yaml_config`
 
 ## Usage
 
