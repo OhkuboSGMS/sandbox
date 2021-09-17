@@ -1,7 +1,43 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:json_annotation/json_annotation.dart';
 import 'package:template_string/template_string.dart';
 
 part 'model.g.dart';
+
+class PhraseManager {
+  late PhraseList phraseList;
+  Map<String, List<Phrase>> groupDict = {};
+  Map<String,List<String>> groupWordDict ={};
+  Future<PhraseManager> process(File jsonFile) async {
+    try {
+      phraseList = PhraseList.fromJson(jsonDecode(jsonFile.readAsStringSync()));
+      final groupName = phraseList.header.names;
+      groupDict.clear();
+      groupWordDict.clear();
+      for (var phrase in phraseList.body) {
+        if (!groupName.contains(phrase.group)) {
+          throw FormatException('Group[${phrase.group}]はグループリストに含まれていません');
+        }
+        if (groupDict[phrase.group] == null) {
+          groupDict[phrase.group] = [];
+          groupWordDict[phrase.group] =[];
+        }
+        groupDict[phrase.group]!.add(phrase);
+        for (var word in phrase.words){
+          if(!groupWordDict[phrase.group]!.contains(word)){
+            groupWordDict[phrase.group]?.add(word);
+          }
+        }
+      }
+
+    } on Exception catch (e) {
+      print(e);
+    }
+    return this;
+  }
+}
 
 @JsonSerializable()
 class PhraseList {
@@ -66,4 +102,9 @@ class Phrase {
   factory Phrase.fromJson(Map<String, dynamic> json) => _$PhraseFromJson(json);
 
   Map<String, dynamic> toJson() => _$PhraseToJson(this);
+
+  @override
+  String toString() {
+    return 'Phrase{reference: $reference, words: $words, group: $group, template: $template}';
+  } 
 }
