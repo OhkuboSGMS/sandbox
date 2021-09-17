@@ -1,0 +1,33 @@
+{
+  "header": {
+    "names": [
+      "japan_politics",
+      "inm",
+      "cult"
+    ],
+    "group": {
+      "japan_politics": {
+        "words": [
+          "x",
+          "y",
+          "z"
+        ]
+      },
+      "cat": {
+        "words": []
+      }
+    }
+  },
+  "body": [
+    {
+      "group": "japan_politics",
+      "reference": "http://example.com",
+      "template": "({{a}}を){{x}}の考えはない。強い警戒感を持って{{y}}に臨む",
+      "words": [
+        "a",
+        "x",
+        "y"
+      ]
+    }
+  ]
+}
