@@ -1,9 +1,8 @@
 # About 
  迷言に単語を当てはめて新しい迷言を作る
 
-# WIP 
 
-#TODO アプリ構想
-単語を入力するとフレーズがそれぞれ生成される
-フレーズが音声で再生される
-入力欄がx,y,zで表示
+## Develop
+
+### json_serializable
+`flutter pub run build_runner build  --delete-conflicting-outputs`

@@ -32,7 +32,7 @@ Map<String, dynamic> _$HeaderToJson(Header instance) => <String, dynamic>{
     };
 
 Group _$GroupFromJson(Map<String, dynamic> json) => Group(
-      words: (json['words'] as List<dynamic>).map((e) => e as String).toList(),
+      words: Map<String, String>.from(json['words'] as Map),
     );
 
 Map<String, dynamic> _$GroupToJson(Group instance) => <String, dynamic>{

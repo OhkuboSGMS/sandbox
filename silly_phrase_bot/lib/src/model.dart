@@ -9,7 +9,9 @@ part 'model.g.dart';
 class PhraseManager {
   late PhraseList phraseList;
   Map<String, List<Phrase>> groupDict = {};
-  Map<String,List<String>> groupWordDict ={};
+  Map<String, List<String>> groupWordDict = {};
+
+  //jsonからデータを生成
   Future<PhraseManager> process(File jsonFile) async {
     try {
       phraseList = PhraseList.fromJson(jsonDecode(jsonFile.readAsStringSync()));
@@ -22,16 +24,15 @@ class PhraseManager {
         }
         if (groupDict[phrase.group] == null) {
           groupDict[phrase.group] = [];
-          groupWordDict[phrase.group] =[];
+          groupWordDict[phrase.group] = [];
         }
         groupDict[phrase.group]!.add(phrase);
-        for (var word in phrase.words){
-          if(!groupWordDict[phrase.group]!.contains(word)){
+        for (var word in phrase.words) {
+          if (!groupWordDict[phrase.group]!.contains(word)) {
             groupWordDict[phrase.group]?.add(word);
           }
         }
       }
-
     } on Exception catch (e) {
       print(e);
     }
@@ -69,7 +70,7 @@ class Header {
 
 @JsonSerializable()
 class Group {
-  List<String> words;
+  Map<String, String> words;
 
   Group({required this.words});
 
@@ -91,12 +92,20 @@ class Phrase {
       required this.group,
       required this.template});
 
-  // 設定されているワードに注意してテンプレート分を生成
+  Phrase.none()
+      : reference = 'None',
+        words = [],
+        group = 'None',
+        template = 'None'; // 設定されているワードに注意してテンプレート分を生成
   String insert(Map<String, String> word) {
     if (!word.keys.every((e) => this.words.contains(e))) {
       return 'Not Enough Words ${this.words}';
     }
-    return template.insertTemplateValues(word);
+    try {
+      return template.insertTemplateValues(word);
+    } on Exception catch (e) {
+      return e.toString();
+    }
   }
 
   factory Phrase.fromJson(Map<String, dynamic> json) => _$PhraseFromJson(json);
@@ -106,5 +115,5 @@ class Phrase {
   @override
   String toString() {
     return 'Phrase{reference: $reference, words: $words, group: $group, template: $template}';
-  } 
+  }
 }

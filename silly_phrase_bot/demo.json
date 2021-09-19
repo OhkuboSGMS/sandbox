@@ -7,14 +7,14 @@
     ],
     "group": {
       "japan_politics": {
-        "words": [
-          "x",
-          "y",
-          "z"
-        ]
+        "words": {
+          "x": "kisei",
+          "y": "enki",
+          "z": "uo"
+        }
       },
       "cat": {
-        "words": []
+        "words": {}
       }
     }
   },
