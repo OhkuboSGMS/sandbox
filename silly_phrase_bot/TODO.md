@@ -6,9 +6,6 @@ Jsonを生成、ストレージにアップロード
 * 入力欄に渡すword機能
 
 
-* Flow
-グループを選択、迷言集とwordリストを渡す(Flutter側に渡すデータをclass化)
-* デフォルトのワードの設定を行う
 * フレーズの読み上げ機能(https://pub.dev/packages/flutter_tts)
 * パッケージ:https://dart.dev/guides/libraries/create-library-packages
 * ファイル場所(Firebase Storage?) https://firebase.google.com/docs/storage/android/download-files?hl=ja
