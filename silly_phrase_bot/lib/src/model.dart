@@ -11,10 +11,10 @@ class PhraseManager {
   Map<String, List<Phrase>> groupDict = {};
   Map<String, List<String>> groupWordDict = {};
 
-  //jsonからデータを生成
-  Future<PhraseManager> process(File jsonFile) async {
+
+  Future<PhraseManager> _process(dynamic json) async{
     try {
-      phraseList = PhraseList.fromJson(jsonDecode(jsonFile.readAsStringSync()));
+      phraseList = PhraseList.fromJson(json);
       final groupName = phraseList.header.names;
       groupDict.clear();
       groupWordDict.clear();
@@ -37,6 +37,14 @@ class PhraseManager {
       print(e);
     }
     return this;
+  }
+  //jsonFileからデータを生成
+  Future<PhraseManager> process(File jsonFile) async {
+    return _process(jsonDecode(jsonFile.readAsStringSync()));
+  }
+  ///jsonのStringから生成
+  Future<PhraseManager> processFromJsonStr(String jsonStr)async{
+    return _process(jsonDecode(jsonStr));
   }
 }
 
