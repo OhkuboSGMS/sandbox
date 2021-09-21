@@ -106,7 +106,7 @@ class Phrase {
         group = 'None',
         template = 'None'; // 設定されているワードに注意してテンプレート分を生成
   String insert(Map<String, String> word) {
-    if (!word.keys.every((e) => this.words.contains(e))) {
+    if (!this.words.every((e) => word.keys.contains(e))) {
       return 'Not Enough Words ${this.words}';
     }
     try {
