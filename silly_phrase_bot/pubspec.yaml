@@ -16,7 +16,9 @@ dev_dependencies:
   test: ^1.17.12
 
 dependencies: 
+  args: ^2.3.0
   csv: ^5.0.0
   json_serializable: ^5.0.1
   path: ^1.8.0
   template_string: ^0.6.0
+  yaml: ^3.1.0
