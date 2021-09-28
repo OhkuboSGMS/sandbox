@@ -52,7 +52,7 @@ Map<String, dynamic> csvToJson(File csvFile, dynamic yaml) {
         group: group,
         template: template));
 
-    // print("$group,$ref,$template");
+    print("$group,$ref,$template");
   }
   return PhraseList(
           header: Header(
@@ -63,7 +63,7 @@ Map<String, dynamic> csvToJson(File csvFile, dynamic yaml) {
       .toJson();
 }
 
-void convert(File phraseFile, File defaultFile) {
+String convert(File phraseFile, File defaultFile) {
   final yamlFile = defaultFile;
   final yaml = loadDefaultYaml(yamlFile);
 
@@ -72,4 +72,5 @@ void convert(File phraseFile, File defaultFile) {
   final name = p.basenameWithoutExtension(phraseFile.path);
   final output_path = p.setExtension(name, ".json");
   File(output_path).writeAsString(JsonEncoder.withIndent("  ").convert(json));
+  return output_path;
 }
