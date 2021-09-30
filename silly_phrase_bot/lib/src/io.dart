@@ -14,6 +14,7 @@ dynamic loadDefaultYaml(File yamlFile) {
   return yaml;
 }
 
+/// Yamlからデフォルトのワードを読み込む
 Map<String, String> loadDefaultWord(dynamic yaml, String group) {
   if (yaml[group] == null) {
     throw Exception('Not Found Key =$group in Default YAML');
@@ -34,6 +35,7 @@ Map<String, dynamic> csvToJson(File csvFile, dynamic yaml) {
   for (var row in rows.getRange(1, rows.length)) {
     if (row.length <= 1) continue;
     final group = (row[0] as String).trim();
+    if(group.isEmpty) continue;
     groupSet.add(group);
     final ref = (row[1] as String).trim();
 
