@@ -35,7 +35,7 @@ Map<String, dynamic> csvToJson(File csvFile, dynamic yaml) {
   for (var row in rows.getRange(1, rows.length)) {
     if (row.length <= 1) continue;
     final group = (row[0] as String).trim();
-    if(group.isEmpty) continue;
+    if (group.isEmpty) continue;
     groupSet.add(group);
     final ref = (row[1] as String).trim();
 
@@ -54,8 +54,10 @@ Map<String, dynamic> csvToJson(File csvFile, dynamic yaml) {
         group: group,
         template: template));
 
-    print("$group,$ref,$template");
+    print('$group,$ref,$template');
   }
+  print('n Group:${groupSet.length}');
+  print('n Phrase: ${phraseList.length}');
   return PhraseList(
           header: Header(
               names: groupSet.toList(),

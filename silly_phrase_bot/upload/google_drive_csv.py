@@ -52,4 +52,6 @@ if __name__ == '__main__':
     parser.add_argument('file_id',help='Google Drive CSV File ID')
     parser.add_argument('output',help='Output Path')
     args = parser.parse_args()
+    print(f'Download Phrase CSV From {args.file_id}')
     main(args.file_id,args.output)
+    print('End')
