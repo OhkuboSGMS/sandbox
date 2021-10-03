@@ -7,17 +7,17 @@ import 'package:template_string/template_string.dart';
 part 'model.g.dart';
 
 class PhraseManager {
-  late PhraseList phraseList;
+  PhraseList? phraseList;
   Map<String, List<Phrase>> groupDict = {};
   Map<String, List<String>> groupWordDict = {};
 
   Future<PhraseManager> _process(dynamic json) async {
     try {
       phraseList = PhraseList.fromJson(json);
-      final groupName = phraseList.header.names;
+      final groupName = phraseList!.header.names;
       groupDict.clear();
       groupWordDict.clear();
-      for (var phrase in phraseList.body) {
+      for (var phrase in phraseList!.body) {
         if (!groupName.contains(phrase.group)) {
           throw FormatException('Group[${phrase.group}]はグループリストに含まれていません');
         }
