@@ -11,8 +11,7 @@ class PhraseManager {
   Map<String, List<Phrase>> groupDict = {};
   Map<String, List<String>> groupWordDict = {};
 
-
-  Future<PhraseManager> _process(dynamic json) async{
+  Future<PhraseManager> _process(dynamic json) async {
     try {
       phraseList = PhraseList.fromJson(json);
       final groupName = phraseList.header.names;
@@ -38,12 +37,14 @@ class PhraseManager {
     }
     return this;
   }
+
   //jsonFileからデータを生成
   Future<PhraseManager> process(File jsonFile) async {
     return _process(jsonDecode(jsonFile.readAsStringSync()));
   }
+
   ///jsonのStringから生成
-  Future<PhraseManager> processFromJsonStr(String jsonStr)async{
+  Future<PhraseManager> processFromJsonStr(String jsonStr) async {
     return _process(jsonDecode(jsonStr));
   }
 }
@@ -123,5 +124,16 @@ class Phrase {
   @override
   String toString() {
     return 'Phrase{reference: $reference, words: $words, group: $group, template: $template}';
+  }
+}
+
+extension PhraseListing on List<Phrase>? {
+  ///このフレーズリストすべてにワードを当てはめたデータを取得
+  List<String> insertWordAll(Map<String, String> word) {
+    if (this == null) {
+      return [];
+    } else {
+      return this!.map((p) => p.insert(word)).toList(growable: false);
+    }
   }
 }
