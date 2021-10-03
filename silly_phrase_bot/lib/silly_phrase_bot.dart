@@ -1,1 +1,1 @@
-export 'src/model.dart' show PhraseManager,Phrase;
+export 'src/model.dart' show PhraseManager,Phrase,PhraseListing;
