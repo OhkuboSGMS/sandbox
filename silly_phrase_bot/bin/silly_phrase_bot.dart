@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:args/args.dart';
-import 'package:silly_phrase_bot/src/io.dart';
+import 'package:silly_phrase_bot/src/io.dart' as io;
 
 void main(List<String> args) {
   final parser = ArgParser();
@@ -15,7 +15,7 @@ void main(List<String> args) {
   final defaultFile = File(_default);
   if (phraseFile.existsSync() && defaultFile.existsSync()) {
     print('Convert $phrase with $_default to json File');
-    convert(phraseFile, defaultFile);
+    io.convert(phraseFile, defaultFile);
   } else {
     exitCode = 1;
   }

@@ -14,6 +14,7 @@ dynamic loadDefaultYaml(File yamlFile) {
   return yaml;
 }
 
+/// Yamlからデフォルトのワードを読み込む
 Map<String, String> loadDefaultWord(dynamic yaml, String group) {
   if (yaml[group] == null) {
     throw Exception('Not Found Key =$group in Default YAML');
@@ -34,6 +35,7 @@ Map<String, dynamic> csvToJson(File csvFile, dynamic yaml) {
   for (var row in rows.getRange(1, rows.length)) {
     if (row.length <= 1) continue;
     final group = (row[0] as String).trim();
+    if (group.isEmpty) continue;
     groupSet.add(group);
     final ref = (row[1] as String).trim();
 
@@ -52,8 +54,10 @@ Map<String, dynamic> csvToJson(File csvFile, dynamic yaml) {
         group: group,
         template: template));
 
-    // print("$group,$ref,$template");
+    print('$group,$ref,$template');
   }
+  print('n Group:${groupSet.length}');
+  print('n Phrase: ${phraseList.length}');
   return PhraseList(
           header: Header(
               names: groupSet.toList(),
@@ -63,7 +67,7 @@ Map<String, dynamic> csvToJson(File csvFile, dynamic yaml) {
       .toJson();
 }
 
-void convert(File phraseFile, File defaultFile) {
+String convert(File phraseFile, File defaultFile) {
   final yamlFile = defaultFile;
   final yaml = loadDefaultYaml(yamlFile);
 
@@ -72,4 +76,5 @@ void convert(File phraseFile, File defaultFile) {
   final name = p.basenameWithoutExtension(phraseFile.path);
   final output_path = p.setExtension(name, ".json");
   File(output_path).writeAsString(JsonEncoder.withIndent("  ").convert(json));
+  return output_path;
 }

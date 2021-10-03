@@ -10,9 +10,13 @@
 
 ### create CLI App
 `dart compile exe bin\silly_phrase_bot.dart`
+
+#### execute CLI
+'bin/silly_phrase_bot '
 ### フレーズの作成
 
 1. CSVにフレーズを追加する ✅
+2. CSVをダウンロードする ✅
 2. CSVをアプリ用jsonに変換する ✅
 3. CLIとして作成 ✅
 3. jsonをファイルAPIアップロードする //TODO
