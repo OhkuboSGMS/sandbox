@@ -15,7 +15,7 @@
 ### Create Python bin
 
 #### Download CSV From Google Drive
-`pyinstaller upload/google_drive_csv.py --onefine`
+`pyinstaller upload/google_drive_csv.py --onefile`
 
 #### Upload Json to Firebase Cloud Storage
 `pyinstaller upload/upload_phrase_json.py --onefile`
@@ -34,3 +34,6 @@ google_driveにサービスアカウントキーから認証無しでアクセ�
 https://playwithgoogleapi.hatenablog.com/entry/2019/06/30/133415
 アカウントについて
 https://qiita.com/t-yotsu/items/5d3d36847fbc71b72b76
+
+## TODO
+dart python の依存関係の自動化

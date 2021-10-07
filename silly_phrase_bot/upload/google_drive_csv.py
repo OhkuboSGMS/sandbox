@@ -9,26 +9,37 @@ from google.oauth2.service_account import Credentials
 from googleapiclient.http import MediaIoBaseDownload
 
 
-def main(file_id: str, output: str):
+def main(csv_file_id: str, default_file_id: str):
     creds = Credentials.from_service_account_file('credentials.json')
     service = build('drive', 'v3', credentials=creds)
     # Call the Drive v3 API
-    request = service.files().export_media(fileId=file_id, mimeType='text/csv')
+    request = service.files().export_media(fileId=csv_file_id, mimeType='text/csv')
     fh = io.BytesIO()
     downloader = MediaIoBaseDownload(fh, request)
     done = False
     while done is False:
         status, done = downloader.next_chunk()
         print("Download %d%%." % int(status.progress() * 100))
-    with open(output, 'wb') as fp:
+    with open('phrase.csv', 'wb') as fp:
+        fp.write(fh.getbuffer())
+
+    request = service.files().get_media(fileId=default_file_id)
+    fh = io.BytesIO()
+    downloader = MediaIoBaseDownload(fh, request)
+    done = False
+    while done is False:
+        status, done = downloader.next_chunk()
+        print("Download %d%%." % int(status.progress() * 100))
+    with open('default.yaml', 'wb') as fp:
         fp.write(fh.getbuffer())
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('file_id', help='Google Drive CSV File ID')
-    parser.add_argument('output', help='Output Path')
+    parser.add_argument('--csv_file_id', default='1ZapCTVCSiqmWmO8BFf0goVz2s5llVji-VhU-HwavWrY',
+                        help='Google Drive CSV File ID')
+    parser.add_argument('--default_file_id', default='1kCfADDpoz6XdsHihB8zMriBZAPcntKNs')
     args = parser.parse_args()
-    print(f'Download Phrase CSV From {args.file_id}')
-    main(args.file_id, args.output)
+    print(f'Download Phrase CSV From {args.csv_file_id} Default Yaml From {args.default_file_id}')
+    main(args.csv_file_id, args.default_file_id)
     print('End')
