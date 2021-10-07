@@ -27,3 +27,10 @@
 2. CSVをアプリ用jsonに変換する ✅
 3. CLIとして作成 ✅
 4. jsonをファイルAPIアップロードする ✅
+
+## Reference
+google_driveにサービスアカウントキーから認証無しでアクセス
+
+https://playwithgoogleapi.hatenablog.com/entry/2019/06/30/133415
+アカウントについて
+https://qiita.com/t-yotsu/items/5d3d36847fbc71b72b76

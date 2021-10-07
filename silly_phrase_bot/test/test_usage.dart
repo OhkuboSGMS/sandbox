@@ -17,11 +17,15 @@ void main() async {
 
     print(pm.groupDict);
     print(pm.groupWordDict);
-
     final phrase = pm.groupDict['japan_politics']![0];
     final word = pm.groupWordDict['japan_politics'];
     final map = Map.fromEntries(word!.map((e) => MapEntry(e, "Test")));
     final template =phrase.insert(map);
     print(template);
+
+    final phrases = pm.groupDict['japan_politics'];
+    final allPhrase =phrases.insertWordAll(map);
+    assert(allPhrase.length == 1);
+    print(allPhrase);
   });
 }
