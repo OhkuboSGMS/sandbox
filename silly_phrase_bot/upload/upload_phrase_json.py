@@ -13,6 +13,8 @@ app = firebase_admin.initialize_app(cred, {
 bucket = storage.bucket()
 
 b =bucket.blob('phrase.json')
-b.upload_from_filename('phrase.json',content_type='application/json')
+b.cache_control = "public, max-age=86400"
+b.upload_from_filename('phrase.json',content_type='application/json'
+                       ,)
 
 print('End Upload Phrase Json')
