@@ -14,15 +14,18 @@ def opencv_decode(file_path: str):
 
 
 def decode_decode(file_path: str):
-    with Timer(title='Decode'):
+    with Timer(title='Decord'):
         vr = VideoReader(file_path)
-        while True:
-            batch = vr.next()
-            if not batch:
-                break
+        for i in range(len(vr)):
+            batch = vr[i]
 
 
 if __name__ == '__main__':
-    video_path = './S001C001P001R001A001_rgb.avi'
-    # opencv_decode(video_path)
+    video_path = 'Sunny Bunnies _ The Big Bunny Race _ SUNNY BUNNIES COMPILATION _ Cartoons for Children [3SeoRakT74s].mp4'
+    opencv_decode(video_path)
     decode_decode(video_path)
+
+    """
+    [CV2] Total time 18.47167 seconds.
+    [Decord] Total time 28.63321 seconds.
+    """
