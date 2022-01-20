@@ -41,6 +41,6 @@ def diff(before: Dict, after: Dict):
     return dictdiffer.diff(before, after)
 
 
-def write_config(config: Dict, config_file_path: str):
-    with open(Path(config_file_path).with_suffix(".yaml"), "w") as f:
+def write_config(config: Dict, config_file_path: str, ext='.yml'):
+    with open(Path(config_file_path).with_suffix(ext), "w") as f:
         yaml.dump(config.to_dict(), f)
