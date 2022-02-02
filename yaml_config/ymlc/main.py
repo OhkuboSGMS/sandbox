@@ -17,7 +17,7 @@ def all_keys(a):
 
 def update_config(config: Dict, config_file_path: Union[str, Path, Dict]):
     after = config.deepcopy()
-    if isinstance(config_file_path, str) or isinstance(config, Path):
+    if isinstance(config_file_path, str) or issubclass(type(config), Path):
         if not os.path.exists(config_file_path):
             raise FileNotFoundError(config_file_path)
 
