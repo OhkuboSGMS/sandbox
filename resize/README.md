@@ -7,8 +7,8 @@ opencvのimage(numpy.ndarray)をリサイズする機能
 * 一つの関数で引数の与え方を変えることで上記のリサイズを実現
 
 
-## Install with PIP on github
-resize:` pip install "git+https://github.com/OhkuboSGMS/sandbox.git#egg=cv_resize&subdirectory=resize"
+## Install from git
+`pip install git+https://github.com/OhkuboSGMS/sandbox.git#egg=cv_resize&subdirectory=resize `
 
 ## Demo
 
