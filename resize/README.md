@@ -8,7 +8,9 @@ opencvのimage(numpy.ndarray)をリサイズする機能
 
 
 ## Install from git
-`pip install git+https://github.com/OhkuboSGMS/sandbox.git#subdirectory=resize `
+```
+pip install git+https://github.com/OhkuboSGMS/sandbox.git#subdirectory=resize
+```
 
 ## Demo
 
