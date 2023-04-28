@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "audio-align"
+version = "0.1.0"
+description = ""
+authors = ["OhkuboSGMS <sinikake.gokiburi@gmail.com>"]
+readme = "README.md"
+packages = [{ include = "audio_align" }]
+
+[tool.poetry.dependencies]
+python = ">3.8 <3.11"
+audalign = "1.2.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
